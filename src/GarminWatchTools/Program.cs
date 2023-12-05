@@ -46,18 +46,20 @@ if (isLinux)
 
   //bleDevice = new LinuxBleDevice(device);
 }
-else if (isWindows)
+//else if (isWindows)
 {
   //var scan = await Bluetooth.RequestLEScanAsync();
 
-  var filter = new BluetoothLEScanFilter();
-  filter.Services.Add(GarminConstants.UUID_SERVICE_GARMIN_3);
-  RequestDeviceOptions options = new()
-  {
-    //AcceptAllDevices = true,
-  };
-  options.Filters.Add(filter);
-  BluetoothDevice device = await Bluetooth.RequestDeviceAsync(options);
+  //var filter = new BluetoothLEScanFilter();
+  //filter.Services.Add(GarminConstants.UUID_SERVICE_GARMIN_3);
+  //RequestDeviceOptions options = new()
+  //{
+    ////AcceptAllDevices = true,
+  //};
+  //options.Filters.Add(filter);
+  //BluetoothDevice device = await Bluetooth.RequestDeviceAsync(options);
+  var devices = await Bluetooth.GetPairedDevicesAsync();
+  var device = devices.FirstOrDefault(d => d.Id == deviceAddress);
 
   if (device == null) { return; }
 
@@ -69,10 +71,10 @@ else if (isWindows)
   bleDevice = new WindowsBleDevice(device);
   List<GattService> services = await device.Gatt.GetPrimaryServicesAsync();
 }
-else
-{
-  return;
-}
+//else
+//{
+//  return;
+//}
 
 async void HandleDisconnected(object? sender, EventArgs e)
 {
