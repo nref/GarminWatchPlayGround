@@ -1,31 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{15871927-AEF2-4D43-A508-92994F3CD5E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garmin.Ble.Lib", "src\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj", "{B4ECE78D-BED6-4621-B2D7-E42AD136EBBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garmin.Ble.Lib", "src\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj", "{B4ECE78D-BED6-4621-B2D7-E42AD136EBBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarminWatchTools", "src\GarminWatchTools\GarminWatchTools.csproj", "{C369D8D9-A277-42C3-8315-FE4F64CAF5D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarminWatchTools", "src\GarminWatchTools\GarminWatchTools.csproj", "{C369D8D9-A277-42C3-8315-FE4F64CAF5D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A5301C76-E72E-4F6D-B571-01EFFC16C1CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garmin.Ble.Lib.Tests", "test\Garmin.Ble.Lib.Tests\Garmin.Ble.Lib.Tests.csproj", "{7E343BAE-DD72-4AC1-8402-358B8F2B1B57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garmin.Ble.Lib.Tests", "test\Garmin.Ble.Lib.Tests\Garmin.Ble.Lib.Tests.csproj", "{7E343BAE-DD72-4AC1-8402-358B8F2B1B57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ble.Interfaces", "src\Ble.Interfaces\Ble.Interfaces.csproj", "{CDFBCAD3-5FD8-4BA2-838C-27C51C805E75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ble.Interfaces", "src\Ble.Interfaces\Ble.Interfaces.csproj", "{CDFBCAD3-5FD8-4BA2-838C-27C51C805E75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ble.Linux", "src\Ble.Linux\Ble.Linux.csproj", "{4B79E99C-8EC3-485F-8DDD-FA28C2B9A4DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ble.Linux", "src\Ble.Linux\Ble.Linux.csproj", "{4B79E99C-8EC3-485F-8DDD-FA28C2B9A4DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBlueZ", "src\dotnet-bluez\src\DotNetBlueZ.csproj", "{D4D6FCE8-DFDF-4DDE-BC58-E88C2B8B8A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetBlueZ", "src\dotnet-bluez\src\DotNetBlueZ.csproj", "{D4D6FCE8-DFDF-4DDE-BC58-E88C2B8B8A5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ble.Windows", "src\Ble.Windows\Ble.Windows.csproj", "{766066C6-AA5C-4491-90A3-0DB23AEDD159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B4ECE78D-BED6-4621-B2D7-E42AD136EBBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -52,6 +51,13 @@ Global
 		{D4D6FCE8-DFDF-4DDE-BC58-E88C2B8B8A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4D6FCE8-DFDF-4DDE-BC58-E88C2B8B8A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4D6FCE8-DFDF-4DDE-BC58-E88C2B8B8A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{766066C6-AA5C-4491-90A3-0DB23AEDD159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766066C6-AA5C-4491-90A3-0DB23AEDD159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766066C6-AA5C-4491-90A3-0DB23AEDD159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766066C6-AA5C-4491-90A3-0DB23AEDD159}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B4ECE78D-BED6-4621-B2D7-E42AD136EBBB} = {15871927-AEF2-4D43-A508-92994F3CD5E0}
@@ -59,5 +65,6 @@ Global
 		{7E343BAE-DD72-4AC1-8402-358B8F2B1B57} = {A5301C76-E72E-4F6D-B571-01EFFC16C1CD}
 		{CDFBCAD3-5FD8-4BA2-838C-27C51C805E75} = {15871927-AEF2-4D43-A508-92994F3CD5E0}
 		{4B79E99C-8EC3-485F-8DDD-FA28C2B9A4DD} = {15871927-AEF2-4D43-A508-92994F3CD5E0}
+		{766066C6-AA5C-4491-90A3-0DB23AEDD159} = {15871927-AEF2-4D43-A508-92994F3CD5E0}
 	EndGlobalSection
 EndGlobal
