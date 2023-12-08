@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Ble.Interfaces\Ble.Interfaces.csproj" />
     <ProjectReference Include="..\..\src\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj" />
   </ItemGroup>
 

@@ -6,12 +6,13 @@ namespace Ble.Windows;
 public class WindowsBleDevice : IBleDevice
 {
   private readonly BluetoothLEDevice _device;
-  public bool IsConnected { get;private set; } 
+  public bool IsConnected { get; private set; }
 
   public WindowsBleDevice(BluetoothLEDevice device)
   {
     _device = device;
     _device.ConnectionStatusChanged += HandleConnectionStatusChanged;
+    HandleConnectionStatusChanged(device, null!);
   }
 
   private void HandleConnectionStatusChanged(BluetoothLEDevice sender, object args)

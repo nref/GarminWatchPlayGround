@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!--<ProjectReference Include="..\Ble.Linux\Ble.Linux.csproj" />-->
-    <ProjectReference Include="..\Ble.Windows\Ble.Windows.csproj" />
-    <ProjectReference Include="..\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj" />
+    <ProjectReference Include="..\..\Ble.Windows\Ble.Windows.csproj" />
+    <ProjectReference Include="..\..\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj" />
+    <ProjectReference Include="..\Cli.Common\Cli.Common.csproj" />
   </ItemGroup>
 
 </Project>

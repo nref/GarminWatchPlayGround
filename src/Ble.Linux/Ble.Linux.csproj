@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Ble.Interfaces\Ble.Interfaces.csproj" />
-      <!-- <ProjectReference Include="..\dotnet-bluez\src\DotNetBlueZ.csproj" /> -->
+       <ProjectReference Include="..\dotnet-bluez\src\DotNetBlueZ.csproj" /> 
     </ItemGroup>
 
     <ItemGroup>

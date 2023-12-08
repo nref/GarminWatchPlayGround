@@ -1,20 +1,25 @@
 ﻿using Ble.Interfaces;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
-using Windows.Security.Cryptography;
 
 namespace Ble.Windows;
 
 public class WindowsGattCharacteristic : IGattCharacteristic
 {
-  private readonly GattCharacteristic _gattChar;
-
   public event Interfaces.GattCharacteristicEventHandlerAsync? Value;
+
+  private readonly GattCharacteristic _gattChar;
 
   public WindowsGattCharacteristic(GattCharacteristic gattChar)
   {
     _gattChar = gattChar;
-    _gattChar.ValueChanged += HandleValueChanged;
+
+    _ = Task.Run(async () =>
+    {
+      _gattChar.ValueChanged += HandleValueChanged;
+      GattCommunicationStatus status = await _gattChar
+        .WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify);
+    });
   }
 
   private async void HandleValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
@@ -30,8 +35,7 @@ public class WindowsGattCharacteristic : IGattCharacteristic
   public async Task<byte[]> ReadValueAsync(IDictionary<string, object> Options)
   {
     var ibuf = (await _gattChar.ReadValueAsync()).Value;
-    CryptographicBuffer.CopyToByteArray(ibuf, out byte[] buffer);
-    return buffer;
+    return ibuf.ToArray();
   }
 
   public async Task WriteValueAsync(byte[] Value, IDictionary<string, object> Options)
