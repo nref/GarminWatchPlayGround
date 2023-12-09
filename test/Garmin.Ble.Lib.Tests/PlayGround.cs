@@ -11,6 +11,7 @@ using Xunit.Abstractions;
 
 namespace Garmin.Ble.Lib.Tests;
 
+using Garmin.Ble.Lib;
 using Xunit;
 
 public class PlayGround
@@ -146,7 +147,7 @@ public class PlayGround
 
         var p1c1 =
             "00-07-81-01-B4-13-90-01-01-01-01-03-6D-01-01-03-6D-01-01-0A-3A-EA-02-12-E7-02-08-01-10-02-18-0A-22-DE-02-2A-12-A0-02-BC-E9-01-04-60-57-57-02-04-02-12-48-63-9F-CA-F8-B1-5E-A3-04-0D-B9-02-02-AC-84-72-F8-E3-0A-2A-04-C9-20-CE-01-A5-D7-23-F8-71-7F-AB-03-CE-46-97-01-74-F6-DE-F7-BA-52-28-03-6E-6B-5E-01-E7-3C-A4-F7-D3-26-A1-02-91-D3-23-01-7D-F8-73-F7-7E-AE-16-02-32-CC-E7-04-B0-58-57-04-FF-FF-3C-2C-63-2A-97-EA-65-E3-30-07-BF-8E-46-05-6D-5C-D6-E9-AB-BA-EA-04-C3-AB-37-04-2C-4B-5E-E9-35-D1-94-02-74-01-1B-03-EC-8C-31-E9-20-CA-36-10-0D-1E-F4-01-A3-C1-51-E9-0C-97-D8-FD-2A-CB-C6-B8-0B-82-BF-E9-EC-5C-82-FB-BF-01-97-FF-A6-52-7A-EA-46-56-3C-F9-72-DC-68-FE-1F-9B-80-EB-79-B3-0E-F7-A4-88-40-FD-62-A2-CF-EC-A8-79-01-F5-61-36-22-FC-A2-8F-63-EE-EC-60-1C-F3-93-07-12-FB-6A-70-37-F0-4E-B2-66-F1-A7-FE-13-FA-D4-43-45-F2-2B-26-E7-EF-FA-EC-2B-F9-F4-0A-86-F4-7F-C3-A3-EE-4B-61-5D-F8-8B-DE-F1-F6-A2-C0-A1-ED-73-96-AB-F7-18-0A-80-F9-2A-66-E5-EC-B5-62-19-F7-51-2C-27-FC-92-F4-71-EC-06-28-A9-F6-EC-5C-DD-FE-9D-8D-49-EC-AE-C5-5C-F6-7F-57-98-01-5F-22-6D-EC-D8-8B-35-F6-F2-AA-4D-04-0A-67-DC-EC-99-31-34-F6-8F-EC-F2-06-9E-CD-95-ED-0D-CE-58-F6-80-58-57-02-01-02-0C-09-CF-22-36-02-9A-23-FC-DA-00";
-        ProcessGfdiBytes(BinUtils.hexStringToByteArray(p1c1));
+        ProcessGfdiBytes(BinUtils.HexStringToByteArray(p1c1));
         // ProcessGfdiBytes(hexStringToByteArray(p1c2));
         // ProcessGfdiBytes(hexStringToByteArray(p1c3));
         // ProcessGfdiBytes(hexStringToByteArray(p1c4));
@@ -245,10 +246,10 @@ public class PlayGround
             "  6b 19 71 0     " +
             "  " +
             "";
-        ProcessGfdiBytes(BinUtils.hexStringToByteArray(p1c1));
-        ProcessGfdiBytes(BinUtils.hexStringToByteArray(p1c2));
-        ProcessGfdiBytes(BinUtils.hexStringToByteArray(p1c3));
-        ProcessGfdiBytes(BinUtils.hexStringToByteArray(p1c4));
+        ProcessGfdiBytes(BinUtils.HexStringToByteArray(p1c1));
+        ProcessGfdiBytes(BinUtils.HexStringToByteArray(p1c2));
+        ProcessGfdiBytes(BinUtils.HexStringToByteArray(p1c3));
+        ProcessGfdiBytes(BinUtils.HexStringToByteArray(p1c4));
         _pbmessage.Position = 0;
         var s = Smart.Parser.ParseFrom(_pbmessage);
         _testOutputHelper.WriteLine(s.ToString());
@@ -319,7 +320,7 @@ public class PlayGround
             "0";
 
 
-        ProcessGfdiBytes(BinUtils.hexStringToByteArray(p1c1));
+        ProcessGfdiBytes(BinUtils.HexStringToByteArray(p1c1));
         // ProcessGfdiBytes(hexStringToByteArray(p1c2));
         // ProcessGfdiBytes(hexStringToByteArray(p1c3));
         // ProcessGfdiBytes(hexStringToByteArray(p1c4));

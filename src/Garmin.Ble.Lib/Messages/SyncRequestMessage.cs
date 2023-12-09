@@ -28,9 +28,9 @@ public class SyncRequestMessage {
                 bitMask &= ~mask;
             }
         }
-        if (bitMask != 0) {
-            throw new IllegalStateException("Unknown bit mask " + BitConverter.ToSingle(longBits, 0));
-        }
+        //if (bitMask != 0) {
+            //throw new IllegalStateException("Unknown bit mask " + BitConverter.ToSingle(longBits, 0));
+        //}
 
         return new SyncRequestMessage(option, fileTypes);
     }

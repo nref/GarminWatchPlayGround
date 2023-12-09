@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Ble.Interfaces\Ble.Interfaces.csproj" />
     <ProjectReference Include="..\..\src\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj" />
   </ItemGroup>
 

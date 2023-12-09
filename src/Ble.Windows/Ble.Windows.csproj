@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ble.Interfaces\Ble.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="wclBluetoothFramework">
+      <HintPath>..\Wcl\netstandard2.0\wclBluetoothFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="wclCommon">
+      <HintPath>..\Wcl\netstandard2.0\wclCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="wclCommunication">
+      <HintPath>..\Wcl\netstandard2.0\wclCommunication.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
