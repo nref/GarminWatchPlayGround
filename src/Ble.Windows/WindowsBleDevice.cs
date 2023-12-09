@@ -50,10 +50,10 @@ public class WindowsBleDevice : IBleDevice
     throw new NotImplementedException();
   }
 
-  public Task<IGattService> GetServiceAsync(string serviceUUID)
+  public Task<IGattService?> GetServiceAsync(string serviceUUID)
   {
     var service = _device.GetGattService(Guid.Parse(serviceUUID));
-    return Task.FromResult((IGattService)new WindowsBleService(service));
+    return Task.FromResult((IGattService?)new WindowsBleService(service));
   }
 
   public Task PairAsync()

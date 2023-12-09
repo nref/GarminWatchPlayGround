@@ -21,9 +21,6 @@ var logger = new ConsoleLogger();
 
 AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) => Console.Error.WriteLine(eventArgs.ExceptionObject);
 
-bool isLinux = OperatingSystem.IsLinux();
-
-
 var adapters = await BlueZManager.GetAdaptersAsync();
 if (adapters.Count == 0)
 {
@@ -53,22 +50,20 @@ await device.WaitForPropertyValueAsync("ServicesResolved", value: true, timeout)
 
 IBleDevice? bleDevice = new LinuxBleDevice(device);
 
-if (bleDevice == null) { return; }
-
 while (!bleDevice.IsConnected)
 {
   await Task.Delay(1000);
 }
 
-var swim2 = new Swim2Device(logger);
-await swim2.Init(bleDevice);
-//_ = Task.Run(swim2.DownloadAGpsData);
+var watch = new GarminDevice(logger, GarminDeviceConfig.Forerunner945LTE);
+await watch.Init(bleDevice);
+//_ = Task.Run(watch.DownloadAGpsData);
 
 //Console.WriteLine("Press Enter to read file list:");
 //Console.ReadLine();
-// await swim2.DownloadGarminXml();
-// await swim2.DownloadFile(5);
+// await watch.DownloadGarminXml();
+// await watch.DownloadFile(5);
 
-//swim2.DownloadAllActivities();
+//watch.DownloadAllActivities();
 
 await TaskUtil.BlockForever();

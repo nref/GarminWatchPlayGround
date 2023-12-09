@@ -15,7 +15,7 @@ public class LinuxBleDevice : IBleDevice
     _device.Disconnected += (sender, args) => { IsConnected = false; return Task.CompletedTask; };
   }
 
-  public async Task<IGattService> GetServiceAsync(string serviceUUID)
+  public async Task<IGattService?> GetServiceAsync(string serviceUUID)
   {
     return new LinuxBleService(await _device.GetServiceAsync(serviceUUID));
   }

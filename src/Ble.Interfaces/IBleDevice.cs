@@ -4,7 +4,7 @@ public interface IBleDevice
 {
   bool IsConnected { get; }
 
-  Task<IGattService> GetServiceAsync(string serviceUUID);
+  Task<IGattService?> GetServiceAsync(string serviceUUID);
   Task DisconnectAsync();
   Task ConnectAsync();
   Task ConnectProfileAsync(string UUID);

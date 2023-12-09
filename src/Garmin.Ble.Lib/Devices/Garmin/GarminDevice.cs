@@ -13,14 +13,38 @@ using NeoSmart.AsyncLock;
 
 namespace Garmin.Ble.Lib.Devices.Garmin;
 
-public class Swim2Device : ICommunicator
+public class GarminDeviceConfig
+{
+    public static GarminDeviceConfig Forerunner945LTE = new()
+    {
+        MultichannelGattServiceUuid = GarminConstants.UUID_SERVICE_GARMIN_3,
+        SendGattCharacteristicUuid = GarminConstants.UUID_CHARACTERISTIC_GARMINFORERUNNER945LTE_GFDI_SEND,
+        ReceiveGattCharacteristicUuid = GarminConstants.UUID_CHARACTERISTIC_GARMINFORERUNNER945LTE_GFDI_RECEIVE,
+    };
+
+    public static GarminDeviceConfig Swim2 = new()
+    {
+        MultichannelGattServiceUuid = GarminConstants.UUID_SERVICE_GARMIN_3,
+        SendGattCharacteristicUuid = GarminConstants.UUID_CHARACTERISTIC_GARMINSWIM2_GFDI_SEND,
+        ReceiveGattCharacteristicUuid = GarminConstants.UUID_CHARACTERISTIC_GARMINSWIM2_GFDI_RECEIVE,
+    };
+
+    public Guid MultichannelGattServiceUuid { get; set; }
+    public Guid SendGattCharacteristicUuid { get; set; }
+    public Guid ReceiveGattCharacteristicUuid { get; set; }
+}
+
+public class GarminDevice : ICommunicator
 {
     private readonly ILogger _log;
+    private readonly GarminDeviceConfig _config;
     private readonly GfdiPacketParser _gfdiPacketParser;
 
-    public Swim2Device(ILogger log)
+    public GarminDevice(ILogger log, GarminDeviceConfig config)
     {
         _log = log;
+        _config = config;
+        
         _gfdiPacketParser = new GfdiPacketParser(log);
         _fileUploadQueue = new FileUploadQueue(this, log);
         _fileDownloadQueue = new FileDownloadQueue(this, _log);
@@ -192,7 +216,7 @@ public class Swim2Device : ICommunicator
             filetypesSb.Append(ft);
         }
         _log.Info("Processing sync request message: option={0}, types: {1}", requestMessage.option, filetypesSb);
-            PostGfdiMessage(new ResponseMessage(GarminConstants.MESSAGE_SYNC_REQUEST, GarminConstants.STATUS_ACK));
+        PostGfdiMessage(new ResponseMessage(GarminConstants.MESSAGE_SYNC_REQUEST, GarminConstants.STATUS_ACK));
         // if (requestMessage.option != SyncRequestMessage.OPTION_INVISIBLE) {
         //     doSync();
         // }
@@ -281,8 +305,8 @@ public class Swim2Device : ICommunicator
     {
         _chunkCount++;
         var chunkSize = _lastOffset == dataDownloadRequest.Offset 
-                ? Math.Min(100, dataDownloadRequest.MaxChunkSize/2) 
-                : Math.Min(220, dataDownloadRequest.MaxChunkSize);
+            ? Math.Min(100, dataDownloadRequest.MaxChunkSize/2) 
+            : Math.Min(220, dataDownloadRequest.MaxChunkSize);
 
         _lastOffset = dataDownloadRequest.Offset;
         
@@ -656,7 +680,7 @@ public class Swim2Device : ICommunicator
             _log.Info(
                 "Received response to directory file filter request: {0}/{1}, requesting download of directory data",
                 responseMessage.status, responseMessage.response);
-             DownloadDirectoryData();
+            DownloadDirectoryData();
         }
         else
         {
@@ -712,10 +736,16 @@ public class Swim2Device : ICommunicator
 
     public async Task Init(IBleDevice bleDevice)
     {
-        var multiChannelService = await bleDevice.GetServiceAsync(GarminConstants.UUID_SERVICE_GARMIN_3.ToString());
-        var inCharacteristic = await multiChannelService.GetCharacteristicAsync(GarminConstants.UUID_CHARACTERISTIC_GARMINSWIM2_GFDI_RECEIVE.ToString());
+        IGattService? multiChannelService = await bleDevice.GetServiceAsync(_config.MultichannelGattServiceUuid.ToString());
+
+        if (multiChannelService == null)
+        {
+            _log.Error("Could not init device: GATT service unavailable. Make sure the watch is disconnected from the phone, e.g. by turning off Bluetooth.");
+        }
+        
+        var inCharacteristic = await multiChannelService.GetCharacteristicAsync(_config.ReceiveGattCharacteristicUuid.ToString());
         inCharacteristic.Value += OnValueIn;
-        var outCharacteristic = await multiChannelService.GetCharacteristicAsync(GarminConstants.UUID_CHARACTERISTIC_GARMINSWIM2_GFDI_SEND.ToString());
+        var outCharacteristic = await multiChannelService.GetCharacteristicAsync(_config.SendGattCharacteristicUuid.ToString());
         _outCharacteristic = outCharacteristic;
         _log.Debug("Send InitConnection Message");
         await SendRawMessage(new InitConnectionMessage().Packet);
