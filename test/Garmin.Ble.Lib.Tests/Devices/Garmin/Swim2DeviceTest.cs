@@ -18,7 +18,7 @@ public class Swim2DeviceTest
     private Mock<IGattCharacteristic> InCharacteristic { get; }
     private Mock<IGattCharacteristicValueEventArgs> RegisterServiceGfdiResponseEventArgs { get; }
     private Mock<IGattCharacteristic> OutCharacteristics { get; }
-    private Swim2Device Device { get; }
+    private GarminDevice Device { get; }
 
     public Swim2DeviceTest(ITestOutputHelper testOutputHelper)
     {
@@ -26,14 +26,14 @@ public class Swim2DeviceTest
         InCharacteristic = new Mock<IGattCharacteristic>();
         InCharacteristic
             .Setup(c => c.GetUUIDAsync())
-            .ReturnsAsync(() => "GattUIID");
+            .ReturnsAsync(() => "GattUUID");
 
         RegisterServiceGfdiResponseEventArgs = new Mock<IGattCharacteristicValueEventArgs>();
         RegisterServiceGfdiResponseEventArgs
             .Setup(args => args.Value)
             .Returns(new byte[] { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, (byte)ServiceType.GFDI, 0, 0, GfdiChannel });
 
-        Device = new Swim2Device(new XunitConsoleLogger(_testOutputHelper));
+        Device = new GarminDevice(new XunitConsoleLogger(_testOutputHelper), GarminDeviceConfig.Swim2);
         OutCharacteristics = new Mock<IGattCharacteristic>();
         OutCharacteristics
             .Setup(c => c.WriteValueAsync(It.IsAny<byte[]>(), It.IsAny<IDictionary<string, object>>()))

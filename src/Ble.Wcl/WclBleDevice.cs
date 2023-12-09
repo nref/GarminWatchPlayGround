@@ -50,13 +50,13 @@ public class WclBleDevice : IBleDevice
     throw new NotImplementedException();
   }
 
-  public Task<IGattService> GetServiceAsync(string serviceUUID)
+  public Task<IGattService?> GetServiceAsync(string serviceUUID)
   {
     wclGattUuid uuid = Wcl.Uuid.FromString(serviceUUID);
     int res = _client.FindService(uuid, out wclGattService? service);
     bool ok = res == wclCommon.wclErrors.WCL_E_SUCCESS && service != null;
 
-    return Task.FromResult(ok ? new WclGattService(_client, service.Value) : (IGattService)null);
+    return Task.FromResult(ok ? new WclGattService(_client, service.Value) : (IGattService?)null);
   }
 
   public Task PairAsync()

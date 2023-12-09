@@ -24,8 +24,8 @@ while (!bleDevice.IsConnected)
   await Task.Delay(1000);
 }
 
-var swim2 = new Swim2Device(logger);
-await swim2.Init(bleDevice);
+var watch = new GarminDevice(logger, GarminDeviceConfig.Forerunner945LTE);
+await watch.Init(bleDevice);
 
 await TaskUtil.BlockForever();
 
