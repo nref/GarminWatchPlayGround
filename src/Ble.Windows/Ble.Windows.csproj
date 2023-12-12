@@ -10,16 +10,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Ble.Interfaces\Ble.Interfaces.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="wclBluetoothFramework">
-      <HintPath>..\Wcl\netstandard2.0\wclBluetoothFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="wclCommon">
-      <HintPath>..\Wcl\netstandard2.0\wclCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="wclCommunication">
-      <HintPath>..\Wcl\netstandard2.0\wclCommunication.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  
 </Project>

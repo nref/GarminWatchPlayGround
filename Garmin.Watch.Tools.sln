@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetBlueZ", "src\dotnet-b
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garmin.Ble.Lib", "src\Garmin.Ble.Lib\Garmin.Ble.Lib.csproj", "{20A711F7-FB68-48C1-9315-21C95C52C394}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.macOS", "Ui.macOS\Ui.macOS.csproj", "{F98C223B-8A4C-40A3-9AAC-E268C5FDADEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{20A711F7-FB68-48C1-9315-21C95C52C394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20A711F7-FB68-48C1-9315-21C95C52C394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20A711F7-FB68-48C1-9315-21C95C52C394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F98C223B-8A4C-40A3-9AAC-E268C5FDADEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98C223B-8A4C-40A3-9AAC-E268C5FDADEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98C223B-8A4C-40A3-9AAC-E268C5FDADEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98C223B-8A4C-40A3-9AAC-E268C5FDADEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
